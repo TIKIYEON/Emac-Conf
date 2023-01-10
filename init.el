@@ -150,8 +150,6 @@
 (use-package all-the-icons)
 
 ;;; LSP
-;; eglot
-(use-package eglot)
 ;; Company
 (use-package company
   :ensure t)
