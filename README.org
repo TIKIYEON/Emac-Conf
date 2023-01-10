@@ -1,0 +1,4 @@
+# .emacs.d
+* My personal Emacs config
+Comming from Doom-Emacs, I am hoping to create a similar Emacs experience that's
+more tailored to me and my personal workflow.
