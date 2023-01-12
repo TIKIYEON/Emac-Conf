@@ -48,7 +48,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(lsp-pyright pyvenv pyenv company eglot general all-the-icons helpful ivy-rich which-key rainbow-delimiters undo-fu evil-collection doom-modeline counsel ivy mindre-theme use-package)))
+   '(evil-magit magit counsel-projectile projectile lsp-pyright pyvenv pyenv company eglot general all-the-icons helpful ivy-rich which-key rainbow-delimiters undo-fu evil-collection doom-modeline counsel ivy mindre-theme use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -187,3 +187,26 @@
   "wj" '(evil-window-down :which-key "lower window")
   "wt" '(tab-bar-switch-to-next-tab :which-key "next tab")
   "wT" '(tab-bar-switch-to-prev-tab :which-key "previous tab"))
+
+;; Projectile
+(use-package projectile
+  :diminish projectile-mode
+  :config (projectile-mode)
+  :custom ((projectile-completion-system 'ivy))
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :init
+  (when (file-directory-p "~/Documents")
+    (setq projectile-project-search-path '("~/Documents")))
+  (setq projectile-switch-project-action #'projectile-dired))
+
+(use-package counsel-projectile
+  :config (counsel-projectile-mode))
+
+;; MAGIT
+(use-package magit
+  :commands (magit-status magit-get-current-branch)
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+(use-package evil-magit
+  :after magit)
