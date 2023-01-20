@@ -59,7 +59,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(lsp-ivy flymake-diagnostic-at-point flymake-diagnostics-at-point flymake-flycheck lsp-treemacs treemacs-icons-dired treemacs-evil treemacs flycheck lsp-ui company-box csharp-mode org-modern visual-fill-column org-bullets evil-magit magit counsel-projectile projectile lsp-pyright pyvenv pyenv company eglot general all-the-icons helpful ivy-rich which-key rainbow-delimiters undo-fu evil-collection doom-modeline counsel ivy mindre-theme use-package)))
+   '(org-roam-ui org-roam math-preview auctex org-pdftools org-pdfview pdf-tools lsp-ivy flymake-diagnostic-at-point flymake-diagnostics-at-point flymake-flycheck lsp-treemacs treemacs-icons-dired treemacs-evil treemacs flycheck lsp-ui company-box csharp-mode org-modern visual-fill-column org-bullets evil-magit magit counsel-projectile projectile lsp-pyright pyvenv pyenv company eglot general all-the-icons helpful ivy-rich which-key rainbow-delimiters undo-fu evil-collection doom-modeline counsel ivy mindre-theme use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -387,3 +387,39 @@
   :config
   (setq term-prompt-regexp "^[^#$%>] *"))
 
+;; PDF
+(use-package pdf-tools
+  :ensure t
+  :init
+  (pdf-loader-install))
+
+(use-package org-pdftools
+  :ensure t)
+
+;; Math-preview
+(use-package math-preview)
+
+;; Org-roam
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory (file-truename "~/Documents/org"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+	 ("C-c n f" . org-roam-node-find)
+	 ("C-c n g" . org-roam-graph)
+	 ("C-c n i" . org-roam-node-insert)
+	 ("C-c n c" . org-roam-capture)
+	 ;; Dailies
+	 ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  (org-roam-db-autosync-mode)
+  (require 'org-roam-protocol))
+
+(use-package org-roam-ui
+  :ensure t
+  :after org
+  :config
+  (setq org-roam-ui-sync-theme t
+	org-roam-ui-follow t
+	org-roam-ui-update-on-save t
+	org-roam-ui-open-on-start t))
