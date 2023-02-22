@@ -32,7 +32,7 @@
 
 ;;; Face attributes
 ;; Fixed pitch face
-;(set-face-attribute 'fixed-pitch nil :font "Fira Code" :height 260)
+;(set-face-attribute 'fixed-pitch nil :font "FiraCode" :height 260)
 ;; Variable pitch face
 (set-face-attribute 'variable-pitch nil :font "Cantarell" :height 295 :weight 'regular)
 
